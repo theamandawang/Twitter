@@ -94,10 +94,17 @@
     cell.tweetProfileImageView.image = [UIImage imageWithData: urlData];
     
     //buttons require bracket format rather than dot format
+    NSString *retweetImageName = cell.tweet.retweeted ? @"retweet-icon-green.png" : @"retweet-icon.png";
+    [cell.tweetRetweetButton setImage: [UIImage imageNamed: retweetImageName] forState:UIControlStateNormal];
     
     [cell.tweetRetweetButton setTitle:[NSString stringWithFormat:@"%d", cell.tweet.retweetCount] forState:UIControlStateNormal];
 
 //    cell.tweetRetweetButton.titleLabel.text = [NSString stringWithFormat:@"%d", cell.tweet.retweetCount];
+    
+    
+    NSString *favoriteImageName = cell.tweet.favorited ? @"favor-icon-red.png" : @"favor-icon.png";
+    [cell.tweetFavoriteButton setImage: [UIImage imageNamed: favoriteImageName] forState:UIControlStateNormal];
+    
     [cell.tweetFavoriteButton setTitle:[NSString stringWithFormat:@"%d", cell.tweet.favoriteCount] forState:UIControlStateNormal];
     return cell;
 }
