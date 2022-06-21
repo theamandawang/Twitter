@@ -7,7 +7,7 @@
 //
 
 #import "APIManager.h"
-#import "Tweet.h"
+//#import "Tweet.h"
 static NSString * const baseURLString = @"https://api.twitter.com";
 
 @interface APIManager()
@@ -74,7 +74,8 @@ static NSString * const baseURLString = @"https://api.twitter.com";
 //       completion(tweetDictionaries, error);
 //   }];
     // Create a GET Request
-    [self GET:@"1.1/statuses/home_timeline.json"
+    NSString *urlString = @"1.1/statuses/home_timeline.json";
+    [self GET:urlString
        parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
            // Success
            NSMutableArray *tweets = [Tweet tweetsWithArray:tweetDictionaries];
@@ -84,5 +85,14 @@ static NSString * const baseURLString = @"https://api.twitter.com";
            completion(nil, error);
     }];
 }
-
+- (void)postStatusWithText:(NSString *)text completion:(void (^)(Tweet *, NSError *))completion {
+    NSString *urlString = @"1.1/statuses/update.json";
+    NSDictionary *parameters = @{@"status": text};
+    [self POST:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable tweetDictionary) {
+        Tweet *tweet = [[Tweet alloc]initWithDictionary:tweetDictionary];
+        completion(tweet, nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        completion(nil, error);
+    }];
+}
 @end

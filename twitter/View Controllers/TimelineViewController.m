@@ -10,10 +10,9 @@
 #import "APIManager.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
-#import "Tweet.h"
 #import "TweetCell.h"
-
-@interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate>
+#import "ComposeViewController.h"
+@interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray<Tweet *> *arrayOfTweets;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -66,15 +65,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    UINavigationController *navigationController = [segue destinationViewController];
+    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        composeController.delegate = self;
 }
-*/
 
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -87,19 +88,27 @@
     cell.tweetDateLabel.text = cell.tweet.createdAtString;
     
     NSString *URLString = cell.tweet.user.profilePicture;
+    [URLString stringByReplacingOccurrencesOfString:@"normal" withString:@""];
     NSURL *url = [NSURL URLWithString:URLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     cell.tweetProfileImageView.image = [UIImage imageWithData: urlData];
     
-    cell.tweetRetweetButton.titleLabel.text = [NSString stringWithFormat:@"%d", cell.tweet.retweetCount];
-    cell.tweetFavoriteButton.titleLabel.text = [NSString stringWithFormat:@"%d", cell.tweet.favoriteCount];
-
+    //buttons require bracket format rather than dot format
     
+    [cell.tweetRetweetButton setTitle:[NSString stringWithFormat:@"%d", cell.tweet.retweetCount] forState:UIControlStateNormal];
+
+//    cell.tweetRetweetButton.titleLabel.text = [NSString stringWithFormat:@"%d", cell.tweet.retweetCount];
+    [cell.tweetFavoriteButton setTitle:[NSString stringWithFormat:@"%d", cell.tweet.favoriteCount] forState:UIControlStateNormal];
     return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return self.arrayOfTweets ? self.arrayOfTweets.count : 0;
+}
+
+- (void)didTweet:(nonnull Tweet *)tweet {
+    [self.arrayOfTweets insertObject: tweet atIndex:0];
+    [self.tableView reloadData];
 }
 
 @end
