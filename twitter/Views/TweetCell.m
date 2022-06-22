@@ -81,7 +81,7 @@
     self.tweetDateLabel.text = [ self.tweet.date shortTimeAgoSinceNow ];
     self.tweetUserLabel.text = self.tweet.user.name;
     self.tweetTextLabel.text = self.tweet.text;
-    self.tweetUserHandleLabel.text = self.tweet.user.screenName;
+    self.tweetUserHandleLabel.text = [NSString stringWithFormat: @"@%@", self.tweet.user.screenName];
     [self.tweetRetweetButton setTitle: [NSString stringWithFormat: @"%d", self.tweet.retweetCount] forState:UIControlStateNormal ];
     [self.tweetFavoriteButton setTitle: [NSString stringWithFormat: @"%d", self.tweet.favoriteCount] forState:UIControlStateNormal ];
     

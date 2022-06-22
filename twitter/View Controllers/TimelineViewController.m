@@ -12,12 +12,14 @@
 #import "LoginViewController.h"
 #import "TweetCell.h"
 #import "ComposeViewController.h"
+#import "DetailsViewController.h"
 #import "DateTools.h"
 
 @interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray<Tweet *> *arrayOfTweets;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+//@property (strong, nonatomic) UINavigationController *navigationController;
 @end
 
 @implementation TimelineViewController
@@ -49,6 +51,16 @@
     }];
     [self.refreshControl endRefreshing];
 
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    DetailsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailsViewController"];
+    viewController.tweet = self.arrayOfTweets[indexPath.row];
+    
+    [self.navigationController pushViewController: viewController animated:YES];
+//    [self setModalPresentationStyle:UIModalPresentationOverFullScreen];
+
+//    [self presentViewController:viewController animated:YES completion:nil];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 - (IBAction)didTapLogout:(id)sender {
     //change window's root controller to go back to login screen w/o segue
