@@ -12,7 +12,9 @@
 #import "LoginViewController.h"
 #import "TweetCell.h"
 #import "ComposeViewController.h"
-@interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+#import "DateTools.h"
+
+@interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray<Tweet *> *arrayOfTweets;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -85,7 +87,7 @@
     cell.tweetUserLabel.text = cell.tweet.user.name;
     cell.tweetUserHandleLabel.text =     [NSString stringWithFormat:@"@%@", cell.tweet.user.screenName];
 
-    cell.tweetDateLabel.text = cell.tweet.createdAtString;
+    cell.tweetDateLabel.text = [cell.tweet.date shortTimeAgoSinceNow];
     
     NSString *URLString = cell.tweet.user.profilePicture;
     [URLString stringByReplacingOccurrencesOfString:@"normal" withString:@""];

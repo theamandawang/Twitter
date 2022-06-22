@@ -8,7 +8,7 @@
 
 #import "TweetCell.h"
 #import "APIManager.h"
-
+#import "DateTools.h"
 @implementation TweetCell
 
 - (void)awakeFromNib {
@@ -78,7 +78,7 @@
 }
 
 - (void) refreshData {
-    self.tweetDateLabel.text = self.tweet.createdAtString;
+    self.tweetDateLabel.text = [ self.tweet.date shortTimeAgoSinceNow ];
     self.tweetUserLabel.text = self.tweet.user.name;
     self.tweetTextLabel.text = self.tweet.text;
     self.tweetUserHandleLabel.text = self.tweet.user.screenName;
