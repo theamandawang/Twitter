@@ -35,6 +35,11 @@
     // Get timeline
     [self fetchTweets];
 }
+// when navigating back from the Detail View, will reload the tweets.
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    [self viewDidLoad];
+}
 - (void)fetchTweets {
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSMutableArray<Tweet *> *tweets, NSError *error) {
         if (tweets) {

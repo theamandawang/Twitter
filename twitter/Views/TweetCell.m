@@ -22,6 +22,7 @@
     // Configure the view for the selected state
 }
 - (IBAction)didTapRetweet:(id)sender {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
     if(self.tweet.retweeted){
         self.tweet.retweeted = NO;
         self.tweet.retweetCount -= 1;
@@ -49,6 +50,7 @@
     }    
 }
 - (IBAction)didTapFavorite:(id)sender {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
     if(self.tweet.favorited){
         self.tweet.favorited = NO;
         self.tweet.favoriteCount -= 1;
@@ -78,14 +80,9 @@
 }
 
 - (void) refreshData {
-    self.tweetDateLabel.text = [ self.tweet.date shortTimeAgoSinceNow ];
-    self.tweetUserLabel.text = self.tweet.user.name;
-    self.tweetTextLabel.text = self.tweet.text;
-    self.tweetUserHandleLabel.text = [NSString stringWithFormat: @"@%@", self.tweet.user.screenName];
+    NSLog(@"%@", NSStringFromSelector(_cmd));
     [self.tweetRetweetButton setTitle: [NSString stringWithFormat: @"%d", self.tweet.retweetCount] forState:UIControlStateNormal ];
     [self.tweetFavoriteButton setTitle: [NSString stringWithFormat: @"%d", self.tweet.favoriteCount] forState:UIControlStateNormal ];
-    
-    
     NSString *favoriteImageName = self.tweet.favorited ? @"favor-icon-red.png" : @"favor-icon.png";
     [self.tweetFavoriteButton setImage: [UIImage imageNamed: favoriteImageName] forState:UIControlStateNormal];
     NSString *retweetImageName = self.tweet.retweeted ? @"retweet-icon-green.png" : @"retweet-icon.png";

@@ -7,7 +7,7 @@
 //
 
 #import "DetailsViewController.h"
-#import "DateTools.h"
+#import "NSDate+DateTools.h"
 #import "APIManager.h"
 @interface DetailsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *tweetTextLabel;
@@ -27,15 +27,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self refreshData];
-    // Do any additional setup after loading the view.
-}
--(void) refreshData {
-    self.tweetDateLabel.text = [ self.tweet.date formattedDateWithStyle:NSDateFormatterFullStyle ];
-    NSLog(@"%@", self.tweet.date);
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"h:mm a MMM d, yyyy"];
+    self.tweetDateLabel.text = [formatter stringFromDate: self.tweet.date];
     self.tweetUserLabel.text = self.tweet.user.name;
     self.tweetTextLabel.text = self.tweet.text;
     self.tweetUserHandleLabel.text = [NSString stringWithFormat: @"@%@", self.tweet.user.screenName];
+    [self refreshData];
+    NSString *URLString = self.tweet.user.profilePicture;
+    [URLString stringByReplacingOccurrencesOfString:@"normal" withString:@""];
+    NSURL *url = [NSURL URLWithString:URLString];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    self.tweetProfileImageView.image = [UIImage imageWithData: urlData];
+    // Do any additional setup after loading the view.
+}
+-(void) refreshData {
+    
     [self.tweetRetweetButton setTitle: [NSString stringWithFormat: @"%d", self.tweet.retweetCount] forState:UIControlStateNormal ];
     [self.tweetFavoriteButton setTitle: [NSString stringWithFormat: @"%d", self.tweet.favoriteCount] forState:UIControlStateNormal ];
     
@@ -44,11 +51,6 @@
     [self.tweetFavoriteButton setImage: [UIImage imageNamed: favoriteImageName] forState:UIControlStateNormal];
     NSString *retweetImageName = self.tweet.retweeted ? @"retweet-icon-green.png" : @"retweet-icon.png";
     [self.tweetRetweetButton setImage: [UIImage imageNamed: retweetImageName] forState:UIControlStateNormal];
-    NSString *URLString = self.tweet.user.profilePicture;
-    [URLString stringByReplacingOccurrencesOfString:@"normal" withString:@""];
-    NSURL *url = [NSURL URLWithString:URLString];
-    NSData *urlData = [NSData dataWithContentsOfURL:url];
-    self.tweetProfileImageView.image = [UIImage imageWithData: urlData];
 }
 
 /*
@@ -61,6 +63,7 @@
 }
 */
 - (IBAction)didTapFavorite:(id)sender {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
     if(self.tweet.favorited){
         self.tweet.favorited = NO;
         self.tweet.favoriteCount -= 1;
@@ -89,6 +92,7 @@
     }
 }
 - (IBAction)didTapRetweet:(id)sender {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
     if(self.tweet.retweeted){
         self.tweet.retweeted = NO;
         self.tweet.retweetCount -= 1;
@@ -113,7 +117,7 @@
                 NSLog(@"Successfully retweeted the following Tweet: %@", tweet.text);
             }
         }];
-    } 
+    }
 }
 
 

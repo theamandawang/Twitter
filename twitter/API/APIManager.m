@@ -7,7 +7,6 @@
 //
 
 #import "APIManager.h"
-//#import "Tweet.h"
 static NSString * const baseURLString = @"https://api.twitter.com";
 
 @interface APIManager()
