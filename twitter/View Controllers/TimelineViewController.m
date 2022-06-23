@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray<Tweet *> *arrayOfTweets;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
-//@property (strong, nonatomic) UINavigationController *navigationController;
+
 @end
 
 @implementation TimelineViewController
@@ -37,7 +37,7 @@
 // when navigating back from the Detail View, will reload the tweets.
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
-    [self fetchTweets];
+    [self.tableView reloadData];
 }
 - (void)fetchTweets {
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSMutableArray<Tweet *> *tweets, NSError *error) {
