@@ -26,7 +26,15 @@
         self.favorited = [dictionary[@"favorited"] boolValue];
         self.retweetCount = [dictionary[@"retweet_count"] intValue];
         self.retweeted = [dictionary[@"retweeted"] boolValue];
-
+//        self.entities = [dictionary[@"entities"] dictionaryRepresentation];
+//        NSLog(@"%@", dictionary[@"entities"][@"hashtags"]);
+        self.media = [[NSMutableArray alloc] init];
+        NSMutableArray *temp = [dictionary[@"entities"] valueForKey:@"media"];
+        if(temp != nil){
+            for(int i = 0; i < temp.count; i++){
+                [self.media addObject:[temp[i] valueForKey:@"media_url_https"]];
+            }
+        }
         NSDictionary *user = dictionary[@"user"];
         self.user = [[User alloc] initWithDictionary:user];
 

@@ -13,7 +13,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [self refreshData];
     // Initialization code
 }
 

@@ -13,14 +13,17 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *tweetButton;
 - (IBAction)onCloseModal:(id)sender;
-
 @end
 
 @implementation ComposeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.textView.delegate = self;
     // Do any additional setup after loading the view.
+}
+- (IBAction)onTapMainView:(id)sender {
+    [self.view endEditing:true];
 }
 
 
@@ -33,7 +36,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    int characterLimit = 140;
 
+    // Construct what the new text would be if we allowed the user's latest edit
+    NSString *newText = [self.textView.text stringByReplacingCharactersInRange:range withString:text];
+
+    // Should the new text should be allowed? True/False
+    return newText.length < characterLimit;
+    // TODO: Allow or disallow the new text
+}
 - (IBAction)onTweet:(id)sender {
     [[APIManager shared] postStatusWithText:self.textView.text completion:^(Tweet * tweet, NSError *error) {
         if (tweet) {
@@ -44,8 +56,6 @@
         }
     }];
 }
-
-
 - (IBAction)onCloseModal:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
 }

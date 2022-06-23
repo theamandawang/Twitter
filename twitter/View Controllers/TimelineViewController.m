@@ -23,7 +23,6 @@
 @end
 
 @implementation TimelineViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.dataSource = self;
@@ -38,7 +37,7 @@
 // when navigating back from the Detail View, will reload the tweets.
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
-    [self viewDidLoad];
+    [self fetchTweets];
 }
 - (void)fetchTweets {
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSMutableArray<Tweet *> *tweets, NSError *error) {
@@ -125,6 +124,21 @@
     [cell.tweetFavoriteButton setImage: [UIImage imageNamed: favoriteImageName] forState:UIControlStateNormal];
     
     [cell.tweetFavoriteButton setTitle:[NSString stringWithFormat:@"%d", cell.tweet.favoriteCount] forState:UIControlStateNormal];
+    NSLog(@"%@", cell.tweet.media);
+    if(cell.tweet.media.count > 0){
+        NSString *mediaURLStr = cell.tweet.media[0];
+        NSURL *mediaURL = [NSURL URLWithString:mediaURLStr];
+        NSData *mediaData = [NSData dataWithContentsOfURL:mediaURL];
+        cell.tweetMediaImageView.image = [UIImage imageWithData: mediaData];
+        cell.tweetMediaImageViewHeight.constant = 330;
+        [cell.tweetMediaImageView setHidden: NO];
+    }
+    else {
+        cell.tweetMediaImageViewHeight.constant = 0;
+        cell.tweetMediaImageViewHeight.priority = 1000;
+        [cell.tweetMediaImageView setHidden:YES];
+        
+    }
     return cell;
 }
 
