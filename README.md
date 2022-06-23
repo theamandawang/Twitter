@@ -2,7 +2,7 @@
 
 **Twitter** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: **X** hours spent in total
+Time spent: **40** hours spent in total
 
 ## User Stories
 
@@ -27,11 +27,11 @@ The following **stretch** features are implemented:
 
 - [X] Be able to **unlike** or **un-retweet** by tapping a liked or retweeted Tweet button, respectively. (Doing so will decrement the count for each)
 - [X] Click on links that appear in Tweets
-- [ ] See embedded media in Tweets that contain images or videos
+- [X] See embedded media in Tweets that contain images or videos
 - [ ] Reply to any Tweet (**2 points**)
   - Replies should be prefixed with the username
   - The `reply_id` should be set when posting the tweet
-- [ ] See a character count when composing a Tweet (as well as a warning) (280 characters) (**1 point**)
+- [X] See a character count when composing a Tweet (as well as a warning) (280 characters) (**1 point**)
 - [ ] Load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client
 - [ ] Click on a Profile image to reveal another user's profile page, including:
   - Header view: picture and tagline
@@ -65,20 +65,5 @@ Describe any challenges encountered while building the app.
 List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
-- [DateTools] (https://github.com/MatthewYork/DateTools) - Date and Time formatting library
-
-## License
-
-    Copyright [yyyy] [name of copyright owner]
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+- [DateTools](https://github.com/MatthewYork/DateTools) - Date and Time formatting library
+- [BDBOAuth1Manager](https://github.com/bdbergeron/BDBOAuth1Manager) - OAuth Library
