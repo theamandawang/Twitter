@@ -110,7 +110,7 @@
     NSURL *url = [NSURL URLWithString:URLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     cell.tweetProfileImageView.image = [UIImage imageWithData: urlData];
-    
+    [cell refreshData];
     //buttons require bracket format rather than dot format
     NSString *retweetImageName = cell.tweet.retweeted ? @"retweet-icon-green.png" : @"retweet-icon.png";
     [cell.tweetRetweetButton setImage: [UIImage imageNamed: retweetImageName] forState:UIControlStateNormal];

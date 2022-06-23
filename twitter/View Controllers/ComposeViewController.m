@@ -49,8 +49,9 @@
 - (IBAction)onTweet:(id)sender {
     [[APIManager shared] postStatusWithText:self.textView.text completion:^(Tweet * tweet, NSError *error) {
         if (tweet) {
-            [self dismissViewControllerAnimated:true completion:nil];
+            tweet.text = self.textView.text;
             [self.delegate didTweet:tweet];
+            [self dismissViewControllerAnimated:true completion:nil];
         } else {
             NSLog(@"Error composing Tweet: %@", error.localizedDescription);
         }
