@@ -100,7 +100,7 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
     cell.tweet = self.arrayOfTweets[indexPath.row];
-    cell.tweetTextLabel.text = cell.tweet.text;
+    cell.tweetTextTextView.text = cell.tweet.text;
     cell.tweetUserLabel.text = cell.tweet.user.name;
     cell.tweetUserHandleLabel.text =     [NSString stringWithFormat:@"@%@", cell.tweet.user.screenName];
 

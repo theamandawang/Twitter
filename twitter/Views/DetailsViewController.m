@@ -10,7 +10,7 @@
 #import "NSDate+DateTools.h"
 #import "APIManager.h"
 @interface DetailsViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *tweetTextLabel;
+@property (weak, nonatomic) IBOutlet UITextView *tweetTextTextView;
 @property (weak, nonatomic) IBOutlet UILabel *tweetUserLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *tweetProfileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *tweetUserHandleLabel;
@@ -31,7 +31,7 @@
     [formatter setDateFormat:@"h:mm a MMM d, yyyy"];
     self.tweetDateLabel.text = [formatter stringFromDate: self.tweet.date];
     self.tweetUserLabel.text = self.tweet.user.name;
-    self.tweetTextLabel.text = self.tweet.text;
+    self.tweetTextTextView.text = self.tweet.text;
     self.tweetUserHandleLabel.text = [NSString stringWithFormat: @"@%@", self.tweet.user.screenName];
     [self refreshData];
     NSString *URLString = self.tweet.user.profilePicture;
