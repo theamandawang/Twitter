@@ -98,47 +98,8 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
-    cell.tweet = self.arrayOfTweets[indexPath.row];
-    cell.tweetTextTextView.text = cell.tweet.text;
-    cell.tweetUserLabel.text = cell.tweet.user.name;
-    cell.tweetUserHandleLabel.text =     [NSString stringWithFormat:@"@%@", cell.tweet.user.screenName];
-
-    cell.tweetDateLabel.text = [cell.tweet.date shortTimeAgoSinceNow];
-    
-    NSString *URLString = cell.tweet.user.profilePicture;
-    [URLString stringByReplacingOccurrencesOfString:@"normal" withString:@""];
-    NSURL *url = [NSURL URLWithString:URLString];
-    NSData *urlData = [NSData dataWithContentsOfURL:url];
-    cell.tweetProfileImageView.image = [UIImage imageWithData: urlData];
-    [cell refreshData];
-    //buttons require bracket format rather than dot format
-    NSString *retweetImageName = cell.tweet.retweeted ? @"retweet-icon-green.png" : @"retweet-icon.png";
-    [cell.tweetRetweetButton setImage: [UIImage imageNamed: retweetImageName] forState:UIControlStateNormal];
-    
-    [cell.tweetRetweetButton setTitle:[NSString stringWithFormat:@"%d", cell.tweet.retweetCount] forState:UIControlStateNormal];
-
-//    cell.tweetRetweetButton.titleLabel.text = [NSString stringWithFormat:@"%d", cell.tweet.retweetCount];
-    
-    
-    NSString *favoriteImageName = cell.tweet.favorited ? @"favor-icon-red.png" : @"favor-icon.png";
-    [cell.tweetFavoriteButton setImage: [UIImage imageNamed: favoriteImageName] forState:UIControlStateNormal];
-    
-    [cell.tweetFavoriteButton setTitle:[NSString stringWithFormat:@"%d", cell.tweet.favoriteCount] forState:UIControlStateNormal];
-    NSLog(@"%@", cell.tweet.media);
-    if(cell.tweet.media.count > 0){
-        NSString *mediaURLStr = cell.tweet.media[0];
-        NSURL *mediaURL = [NSURL URLWithString:mediaURLStr];
-        NSData *mediaData = [NSData dataWithContentsOfURL:mediaURL];
-        cell.tweetMediaImageView.image = [UIImage imageWithData: mediaData];
-        cell.tweetMediaImageViewHeight.constant = 330;
-        [cell.tweetMediaImageView setHidden: NO];
-    }
-    else {
-        cell.tweetMediaImageViewHeight.constant = 0;
-        cell.tweetMediaImageViewHeight.priority = 1000;
-        [cell.tweetMediaImageView setHidden:YES];
-        
-    }
+    cell.tweetView.tweet = self.arrayOfTweets[indexPath.row];
+    [cell.tweetView refreshData];
     return cell;
 }
 

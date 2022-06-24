@@ -10,7 +10,7 @@
 #import "Tweet.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@interface TweetView : UIViewController
+@interface TweetView : UIView
 @property (strong, nonatomic) Tweet *tweet;
 
 @property (weak, nonatomic) IBOutlet UILabel *tweetUserLabel;
