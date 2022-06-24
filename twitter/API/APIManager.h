@@ -20,4 +20,6 @@
 - (void)unfavorite:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion;
 - (void)retweet:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion;
 - (void) unretweet:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion;
+- (void)loadMoreHomeTimelineWithMaxID:(NSString *)max_id completion:(void(^)(NSMutableArray *tweets, NSError *error))completion;
+- (void)postReply:(NSString *)text tweetID:(NSString *)tweetID completion:(void (^)(Tweet *, NSError *))completion;
 @end

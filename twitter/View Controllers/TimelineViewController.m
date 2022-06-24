@@ -54,7 +54,19 @@
         }
     }];
     [self.refreshControl endRefreshing];
-
+}
+- (void)loadMoreTweets:(NSString*) max_id {
+    [[APIManager shared] loadMoreHomeTimelineWithMaxID: max_id completion:^(NSMutableArray<Tweet *> *tweets, NSError *error) {
+        if (tweets) {
+            for(int i = 1; i < 21; i++){
+                [self.arrayOfTweets addObject:tweets[i]];
+            }
+            NSLog(@"😎😎😎 Loaded more");
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"😫😫😫 Error loading more: %@", error.localizedDescription);
+        }
+    }];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DetailsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailsViewController"];
@@ -116,7 +128,6 @@
     [cell.tweetRetweetButton setImage: [UIImage imageNamed: retweetImageName] forState:UIControlStateNormal];
     
     [cell.tweetRetweetButton setTitle:[NSString stringWithFormat:@"%d", cell.tweet.retweetCount] forState:UIControlStateNormal];
-
 //    cell.tweetRetweetButton.titleLabel.text = [NSString stringWithFormat:@"%d", cell.tweet.retweetCount];
     
     
@@ -138,6 +149,9 @@
         cell.tweetMediaImageViewHeight.priority = 1000;
         [cell.tweetMediaImageView setHidden:YES];
         
+    }
+    if(indexPath.row >= self.arrayOfTweets.count - 1){
+        [self loadMoreTweets:cell.tweet.idStr];
     }
     return cell;
 }
