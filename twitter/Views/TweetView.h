@@ -10,8 +10,8 @@
 #import "Tweet.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@interface TweetView : UIView
-
+@interface TweetView : UIViewController
+@property (strong, nonatomic) Tweet *tweet;
 
 @property (weak, nonatomic) IBOutlet UILabel *tweetUserLabel;
 @property (weak, nonatomic) IBOutlet UITextView *tweetTextTextView;
@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tweetMediaImageViewHeight;
 
 
-@property (nonatomic, strong) Tweet *tweet;
+
 - (void) refreshData;
 @end
 
