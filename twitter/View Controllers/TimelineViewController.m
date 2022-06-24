@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "TweetCell.h"
+#import "TweetView.h"
 #import "ComposeViewController.h"
 #import "DetailsViewController.h"
 #import "DateTools.h"

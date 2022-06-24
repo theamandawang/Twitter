@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TweetView : UIView
 @property (strong, nonatomic) Tweet *tweet;
 
+@property (strong, nonatomic) IBOutlet TweetView *contentView;
 @property (weak, nonatomic) IBOutlet UILabel *tweetUserLabel;
 @property (weak, nonatomic) IBOutlet UITextView *tweetTextTextView;
 @property (weak, nonatomic) IBOutlet UILabel *tweetUserHandleLabel;
@@ -25,8 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *tweetMediaImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tweetMediaImageViewHeight;
 
-
-
+- (instancetype) initWithTweet:(Tweet *)tweet;
+- (instancetype) initWithCoder:(NSCoder *)aDecoder;
+- (instancetype) customInit;
+- (instancetype) initWithFrame:(CGRect)frame;
 - (void) refreshData;
 @end
 

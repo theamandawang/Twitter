@@ -11,6 +11,11 @@
 #import "DateTools.h"
 
 @implementation TweetView
+- (instancetype) initWithTweet:(Tweet *)tweet{
+    self.tweet = tweet;
+    [self refreshData];
+    return self;
+}
 - (IBAction)didTapRetweet:(id)sender {
     NSLog(@"%@", NSStringFromSelector(_cmd));
     if(self.tweet.retweeted){
@@ -66,7 +71,26 @@
     }
     [self refreshData];
 }
-
+- (instancetype) initWithCoder:(NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
+    if (self){
+        [self customInit];
+    }
+    return self;
+}
+- (instancetype) initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if (self){
+        [self customInit];
+    }
+    return self;
+}
+- (instancetype) customInit{
+    [[NSBundle mainBundle] loadNibNamed: @"TweetView" owner: self options:nil];
+    [self addSubview: self.contentView];
+    self.contentView.frame = self.bounds;
+    return self;
+}
 - (void) refreshData {
     NSLog(@"%@", NSStringFromSelector(_cmd));
     self.tweetTextTextView.text = self.tweet.text;

@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TweetView">
             <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="1k5-j9-Gry"/>
                 <outlet property="tweetDateLabel" destination="SFi-AT-Afc" id="2Sa-LY-5dG"/>
                 <outlet property="tweetFavoriteButton" destination="v2e-Ir-38a" id="96Q-U3-Grh"/>
                 <outlet property="tweetMediaImageView" destination="KLp-iM-iCX" id="z4f-LE-MFn"/>
@@ -25,7 +26,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" restorationIdentifier="TweetView" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -153,7 +154,7 @@
                 <constraint firstItem="rTJ-Ej-hGW" firstAttribute="width" secondItem="rTJ-Ej-hGW" secondAttribute="height" multiplier="1:1" id="yux-lk-9oM"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="157.97101449275362" y="173.4375"/>
+            <point key="canvasLocation" x="100" y="157"/>
         </view>
     </objects>
     <resources>
