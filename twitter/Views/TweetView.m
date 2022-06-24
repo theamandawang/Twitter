@@ -119,15 +119,24 @@
         NSURL *mediaURL = [NSURL URLWithString:mediaURLStr];
         NSData *mediaData = [NSData dataWithContentsOfURL:mediaURL];
         self.tweetMediaImageView.image = [UIImage imageWithData: mediaData];
-        self.tweetMediaImageViewHeight.constant = 330;
+        [self.buttonTopToTextViewBottom setActive:false];
+        [self.buttonTopToImageViewBottom setActive:true];
         [self.tweetMediaImageView setHidden: NO];
     }
     else {
-        self.tweetMediaImageViewHeight.constant = 0;
-        self.tweetMediaImageViewHeight.priority = 1000;
         [self.tweetMediaImageView setHidden:YES];
-        
+        [self.buttonTopToImageViewBottom setActive:false];
+        [self.buttonTopToTextViewBottom setActive:true];
+//        NSString *mediaURLStr = @"https://upload.wikimedia.org/wikipedia/en/thumb/b/bc/Garfield_the_Cat.svg/1200px-Garfield_the_Cat.svg.png";
+//        NSURL *mediaURL = [NSURL URLWithString:mediaURLStr];
+//        NSData *mediaData = [NSData dataWithContentsOfURL:mediaURL];
+//        self.tweetMediaImageView.image = [UIImage imageWithData: mediaData];
+//        [self.buttonTopToTextViewBottom setActive:false];
+//        [self.buttonTopToImageViewBottom setActive:true];
+//        [self.tweetMediaImageView setHidden: NO];
+
     }
+    [self layoutIfNeeded];
     [self.tweetRetweetButton setTitle: [NSString stringWithFormat: @"%d", self.tweet.retweetCount] forState:UIControlStateNormal ];
     [self.tweetFavoriteButton setTitle: [NSString stringWithFormat: @"%d", self.tweet.favoriteCount] forState:UIControlStateNormal ];
 }

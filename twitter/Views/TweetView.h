@@ -24,7 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *tweetFavoriteButton;
 @property (weak, nonatomic) IBOutlet UIButton *tweetMessageButton;
 @property (weak, nonatomic) IBOutlet UIImageView *tweetMediaImageView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tweetMediaImageViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonTopToImageViewBottom;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonTopToTextViewBottom;
 
 - (instancetype) initWithTweet:(Tweet *)tweet;
 - (instancetype) initWithCoder:(NSCoder *)aDecoder;
