@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TweetCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet TweetView *tweetView;
-
 @end
 
 NS_ASSUME_NONNULL_END

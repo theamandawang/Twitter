@@ -11,11 +11,6 @@
 #import "DateTools.h"
 
 @implementation TweetView
-- (instancetype) initWithTweet:(Tweet *)tweet{
-    self.tweet = tweet;
-    [self refreshData];
-    return self;
-}
 - (IBAction)didTapRetweet:(id)sender {
     NSLog(@"%@", NSStringFromSelector(_cmd));
     if(self.tweet.retweeted){
