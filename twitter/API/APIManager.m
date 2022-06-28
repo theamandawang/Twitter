@@ -14,7 +14,8 @@ static NSString * const baseURLString = @"https://api.twitter.com";
 @end
 
 @implementation APIManager
-
+//singleton - initialize obj / class and only do so once during lifetime of application. everyone has access to the SAME instance of the API object.
+//not good :( read more!
 + (instancetype)shared {
     static APIManager *sharedManager = nil;
     static dispatch_once_t onceToken;

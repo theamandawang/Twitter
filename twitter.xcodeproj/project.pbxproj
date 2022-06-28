@@ -23,6 +23,8 @@
 		7F31357F28611D70006448A3 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F31357E28611D70006448A3 /* Tweet.m */; };
 		7F3135852861217C006448A3 /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3135842861217C006448A3 /* TweetCell.m */; };
 		7F31358828624827006448A3 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F31358728624827006448A3 /* ComposeViewController.m */; };
+		7F5FD01728652D1D00280135 /* TweetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5FD01628652D1D00280135 /* TweetView.m */; };
+		7FE555D628663DC90069DAEC /* TweetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FE555D528663DC90069DAEC /* TweetView.xib */; };
 		7FF4CD36286394B500B000CE /* SharedDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF4CD35286394B500B000CE /* SharedDisplay.m */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,9 @@
 		7F3135842861217C006448A3 /* TweetCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
 		7F31358628624827006448A3 /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		7F31358728624827006448A3 /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		7F5FD01528652D1D00280135 /* TweetView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TweetView.h; sourceTree = "<group>"; };
+		7F5FD01628652D1D00280135 /* TweetView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetView.m; sourceTree = "<group>"; };
+		7FE555D528663DC90069DAEC /* TweetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetView.xib; sourceTree = "<group>"; };
 		7FF4CD35286394B500B000CE /* SharedDisplay.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; path = SharedDisplay.m; sourceTree = "<group>"; };
 		7FF4CD37286394BF00B000CE /* SharedDisplay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedDisplay.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +114,7 @@
 				6AD278D820BC4B950085BC29 /* AppDelegate.h */,
 				6AD278D920BC4B950085BC29 /* AppDelegate.m */,
 				6AD278DE20BC4B950085BC29 /* Main.storyboard */,
+				7FE555D528663DC90069DAEC /* TweetView.xib */,
 				7F313578286110F3006448A3 /* Keys.plist */,
 				6AD278E120BC4B970085BC29 /* Assets.xcassets */,
 				6AD278E320BC4B970085BC29 /* LaunchScreen.storyboard */,
@@ -149,6 +155,8 @@
 				7F28D10B2862BA3E0022E69E /* DetailsViewController.m */,
 				7F3135832861217C006448A3 /* TweetCell.h */,
 				7F3135842861217C006448A3 /* TweetCell.m */,
+				7F5FD01528652D1D00280135 /* TweetView.h */,
+				7F5FD01628652D1D00280135 /* TweetView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -238,6 +246,7 @@
 				6AD278E520BC4B970085BC29 /* LaunchScreen.storyboard in Resources */,
 				6AD278E220BC4B970085BC29 /* Assets.xcassets in Resources */,
 				6AD278E020BC4B950085BC29 /* Main.storyboard in Resources */,
+				7FE555D628663DC90069DAEC /* TweetView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F3135852861217C006448A3 /* TweetCell.m in Sources */,
+				7F5FD01728652D1D00280135 /* TweetView.m in Sources */,
 				6AD278F320BCA6020085BC29 /* BDBOAuth1SessionManager+SFAuthenticationSession.m in Sources */,
 				7F28D10C2862BA3E0022E69E /* DetailsViewController.m in Sources */,
 				7FF4CD36286394B500B000CE /* SharedDisplay.m in Sources */,
