@@ -39,7 +39,7 @@
 // when navigating back from the Detail View, will reload the tweets.
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
-    [self.tableView reloadData];
+    [self reloadData];
 }
 - (void)fetchTweets {
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSMutableArray<Tweet *> *tweets, NSError *error) {
@@ -50,7 +50,7 @@
                 NSString *text = tweet.text;
                 NSLog(@"%@", text);
             }
-            [self.tableView reloadData];
+            [self reloadData];
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
@@ -126,7 +126,7 @@
 
 - (void)didTweet:(nonnull Tweet *)tweet {
     [self.arrayOfTweets insertObject: tweet atIndex:0];
-    [self.tableView reloadData];
+    [self reloadData];
 }
 - (void)reloadData{
     [self.tableView reloadData];
