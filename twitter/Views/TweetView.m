@@ -36,7 +36,7 @@
             }
         }];
     }
-    [self refreshData];
+    [self refreshButtons];
 }
 - (IBAction)didTapFavorite:(id)sender {
     NSLog(@"%@", NSStringFromSelector(_cmd));
@@ -64,7 +64,7 @@
             }
         }];
     }
-    [self refreshData];
+    [self refreshButtons];
 }
 - (instancetype) initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
@@ -86,6 +86,18 @@
     self.contentView.frame = self.bounds;
     return self;
 }
+- (void) refreshButtons {
+    NSString *retweetImageName = self.tweet.retweeted ? @"retweet-icon-green.png" : @"retweet-icon.png";
+    [self.tweetRetweetButton setImage: [UIImage imageNamed: retweetImageName] forState:UIControlStateNormal];
+    
+    [self.tweetRetweetButton setTitle:[NSString stringWithFormat:@"%d", self.tweet.retweetCount] forState:UIControlStateNormal];
+    
+    NSString *favoriteImageName = self.tweet.favorited ? @"favor-icon-red.png" : @"favor-icon.png";
+    [self.tweetFavoriteButton setImage: [UIImage imageNamed: favoriteImageName] forState:UIControlStateNormal];
+    
+    [self.tweetFavoriteButton setTitle:[NSString stringWithFormat:@"%d", self.tweet.favoriteCount] forState:UIControlStateNormal];
+    [self.tweetRetweetButton setTitle: [NSString stringWithFormat: @"%d", self.tweet.retweetCount] forState:UIControlStateNormal ];
+}
 - (void) refreshData {
     NSLog(@"%@", NSStringFromSelector(_cmd));
     self.tweetTextTextView.text = self.tweet.text;
@@ -99,16 +111,7 @@
     NSURL *url = [NSURL URLWithString:URLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     self.tweetProfileImageView.image = [UIImage imageWithData: urlData];
-    NSString *retweetImageName = self.tweet.retweeted ? @"retweet-icon-green.png" : @"retweet-icon.png";
-    [self.tweetRetweetButton setImage: [UIImage imageNamed: retweetImageName] forState:UIControlStateNormal];
-    
-    [self.tweetRetweetButton setTitle:[NSString stringWithFormat:@"%d", self.tweet.retweetCount] forState:UIControlStateNormal];
-    
-    NSString *favoriteImageName = self.tweet.favorited ? @"favor-icon-red.png" : @"favor-icon.png";
-    [self.tweetFavoriteButton setImage: [UIImage imageNamed: favoriteImageName] forState:UIControlStateNormal];
-    
-    [self.tweetFavoriteButton setTitle:[NSString stringWithFormat:@"%d", self.tweet.favoriteCount] forState:UIControlStateNormal];
-    NSLog(@"%@", self.tweet.media);
+    [self refreshButtons];
     if(self.tweet.media.count > 0){
         NSString *mediaURLStr = self.tweet.media[0];
         NSURL *mediaURL = [NSURL URLWithString:mediaURLStr];

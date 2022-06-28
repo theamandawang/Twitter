@@ -56,7 +56,19 @@
         }
     }];
     [self.refreshControl endRefreshing];
-
+}
+- (void)loadMoreTweets:(NSString*) max_id {
+    [[APIManager shared] loadMoreHomeTimelineWithMaxID: max_id completion:^(NSMutableArray<Tweet *> *tweets, NSError *error) {
+        if (tweets) {
+            for(int i = 1; i < 21; i++){
+                [self.arrayOfTweets addObject:tweets[i]];
+            }
+            NSLog(@"😎😎😎 Loaded more");
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"😫😫😫 Error loading more: %@", error.localizedDescription);
+        }
+    }];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DetailsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailsViewController"];
@@ -102,6 +114,9 @@
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
     cell.tweetView.tweet = self.arrayOfTweets[indexPath.row];
     [cell.tweetView refreshData];
+    if(indexPath.row >= self.arrayOfTweets.count - 1){
+        [self loadMoreTweets:self.arrayOfTweets[indexPath.row].idStr];
+    }
     return cell;
 }
 

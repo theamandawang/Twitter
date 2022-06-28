@@ -190,6 +190,7 @@
         <!--Details View Controller-->
         <scene sceneID="zr9-e3-meW">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FKP-Nf-RIu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="DetailsViewController" id="THC-4f-oix" customClass="DetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bir-3f-zSg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -241,7 +242,6 @@
                         <outlet property="tweetView" destination="2t3-d7-efZ" id="1dY-Z8-XzK"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FKP-Nf-RIu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1657.9710144927537" y="722.54464285714278"/>
         </scene>
