@@ -26,6 +26,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *tweetMediaImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonTopToImageViewBottom;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonTopToTextViewBottom;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateLabelLeadingToSuper;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateLabelTrailingToSuper;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateLabelYToProfileCenter;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateLabelTopToProfileImage;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonBottomToSuperBottomGreaterEqual;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonBottomToSuperBottomEqual;
+
+
 - (instancetype) initWithCoder:(NSCoder *)aDecoder;
 - (instancetype) customInit;
 - (instancetype) initWithFrame:(CGRect)frame;

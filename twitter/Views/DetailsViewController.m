@@ -24,5 +24,14 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"h:mm a MMM d, yyyy"];
     self.tweetView.tweetDateLabel.text = [formatter stringFromDate: self.tweet.date];
+    [self.tweetView.dateLabelTrailingToSuper setActive:false];
+    [self.tweetView.dateLabelYToProfileCenter setActive:false];
+    [self.tweetView.buttonBottomToSuperBottomEqual setActive:false];
+    [self.tweetView.buttonBottomToSuperBottomGreaterEqual setActive:true];
+    [self.tweetView.dateLabelLeadingToSuper setActive:true];
+    [self.tweetView.dateLabelTopToProfileImage setActive:true];
+
+    [self.tweetView layoutIfNeeded];
+
 }
 @end

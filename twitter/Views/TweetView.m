@@ -122,15 +122,13 @@
         [self.tweetMediaImageView setHidden:YES];
         [self.buttonTopToImageViewBottom setActive:false];
         [self.buttonTopToTextViewBottom setActive:true];
-//        NSString *mediaURLStr = @"https://upload.wikimedia.org/wikipedia/en/thumb/b/bc/Garfield_the_Cat.svg/1200px-Garfield_the_Cat.svg.png";
-//        NSURL *mediaURL = [NSURL URLWithString:mediaURLStr];
-//        NSData *mediaData = [NSData dataWithContentsOfURL:mediaURL];
-//        self.tweetMediaImageView.image = [UIImage imageWithData: mediaData];
-//        [self.buttonTopToTextViewBottom setActive:false];
-//        [self.buttonTopToImageViewBottom setActive:true];
-//        [self.tweetMediaImageView setHidden: NO];
-
     }
+    [self.dateLabelLeadingToSuper setActive:false];
+    [self.dateLabelTopToProfileImage setActive:false];
+    [self.buttonBottomToSuperBottomGreaterEqual setActive:false];
+    [self.buttonBottomToSuperBottomEqual setActive:true];
+    [self.dateLabelTrailingToSuper setActive:true];
+    [self.dateLabelYToProfileCenter setActive:true];
     [self layoutIfNeeded];
     [self.tweetRetweetButton setTitle: [NSString stringWithFormat: @"%d", self.tweet.retweetCount] forState:UIControlStateNormal ];
     [self.tweetFavoriteButton setTitle: [NSString stringWithFormat: @"%d", self.tweet.favoriteCount] forState:UIControlStateNormal ];
