@@ -1,9 +1,3 @@
-Attempting to use a shared View for both the TweetCell and DetailsViewController. 
-# Options #
-- Trying to make a shared View component and creating instances of this in both the DetailsViewController and TweetCell.
-- Use protocols ? (not sure exactly how to make this work)
-
-
 # Project 2 - *Twitter*
 
 **Twitter** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
